@@ -75,6 +75,7 @@ void	build_stack(t_stack *a, int ac, char **av)
 		ft_error();;
 }
 
+
 int	main(int ac, char **av)
 {
 	t_stack	a;
@@ -84,17 +85,17 @@ int	main(int ac, char **av)
 		return(0);
 	init_stack(&a, &b);
 	build_stack(&a, ac, av);
-	print_stack(&a);
-	printf("start sort\n");
-
-	if (ac ==  4)
-		small_sort(&a, &b);
+	
+	//print_stack(&a);
+	//printf("start sort\n");
+	
+	if (a.size < 2)
+		return(0);
 	else 
 		tri_version(&a, &b);
 	
-
-	printf("finish sort\n");
-	print_stack(&a);
+	//printf("finish sort\n");
+	//print_stack(&a);
 
 	return(0);
 }
