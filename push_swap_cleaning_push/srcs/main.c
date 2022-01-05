@@ -16,6 +16,7 @@ void	print_stack(t_stack *a)
 	}
 	printf(" >>\n");
 }
+
 void	print_stacks(t_stack *a, t_stack *b)
 {
 	printf("stack A : ");
@@ -75,6 +76,22 @@ void	build_stack(t_stack *a, int ac, char **av)
 		ft_error();;
 }
 
+int	sorted(t_stack *a)
+{
+	t_elem	*tmp;
+	int i;
+
+	i = 0;
+	tmp = a->first;
+	while (i < a->size - 1)
+	{
+		if (tmp->value > tmp->next->value)
+			return (0);
+		tmp = tmp->next;
+		i++;
+	}
+	return (1);
+}
 
 int	main(int ac, char **av)
 {
@@ -85,17 +102,18 @@ int	main(int ac, char **av)
 		return(0);
 	init_stack(&a, &b);
 	build_stack(&a, ac, av);
-	
-	//print_stack(&a);
-	//printf("start sort\n");
-	
+
+	print_stacks(&a, &b);
 	if (a.size < 2)
 		return(0);
-	else 
+	else if (sorted(&a))
+		return(0);
+	else if (a.size < 4) 
+		very_small_sort(&a);
+	else if (a.size < 6)
+		small_sort(&a, &b);
+	else
 		tri_version(&a, &b);
-	
-	//printf("finish sort\n");
-	//print_stack(&a);
-
+	print_stacks(&a, &b);
 	return(0);
 }

@@ -24,10 +24,9 @@ void	ft_rr(t_stack *a, t_stack *b)
 void	ft_rra(t_stack *a)
 {
 	t_elem	*tmp;
-
 	if (a->first && a->first->next)
 	{
-		tmp = a ->last;
+		tmp = a->last;
 		a->last = a->last->prev;
 		a->first = tmp;
 	}

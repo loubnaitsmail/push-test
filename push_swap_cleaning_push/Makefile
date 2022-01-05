@@ -7,12 +7,13 @@ IFLAGS	=	-I. -I./libft -I includes
 LFLAGS	=	-L./libft -lft
 BFLAGS	=	0
  
-SRC	=			srcs/mm.c \
+SRC	=			srcs/main.c \
 					srcs/operations.c \
 					srcs/operations_2.c \
 					srcs/operations_3.c \
 					srcs/functions.c \
-					srcs/trie.c 
+					srcs/trie.c \
+					srcs/small_sort.c
 
 OBJ		=	$(SRC:%.c=%.o)
  

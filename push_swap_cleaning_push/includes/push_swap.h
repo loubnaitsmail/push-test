@@ -43,5 +43,9 @@ long long	ft_atoill(const char *str);
 int		count_nbr(t_stack *a);
 int		check_double(t_stack *a);
 void	ft_putstr(char *s);
-void	small_sort(t_stack *a, t_stack *b);
+void	push_a_sorted(t_stack *a, t_stack *b);
+void	very_small_sort(t_stack *a);
+void 	small_sort(t_stack *a, t_stack *b);
+int	find_closet(long int value, t_stack *p);
+
 #endif

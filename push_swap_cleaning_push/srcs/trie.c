@@ -83,12 +83,12 @@ void	rotate_b_extrem(int sens_rotation, t_stack *b)
 		if (sens_rotation > 0)
 		{
 			ft_rb(b);
-			write(1, "rb\n", 3);
+			ft_putstr("rb\n");
 		}
 		else
 		{
 			ft_rrb(b);
-			write(1, "rrb\n", 4);
+			ft_putstr("rrb\n");
 		}
 	}
 }
@@ -103,11 +103,11 @@ void	push_b_sorted(t_stack *a, t_stack *b)
 	if (b->size < 2)
 	{
 		ft_pb(a, b);
-		write(1, "pb\n", 3);
+		ft_putstr("pb\n");
 		return;
 	}
 	value = a->first->value;
-	sens_rotation = find_closet(value, b);
+	sens_rotation = find_closet(value, b); 
 	extrem = is_extrem(value, b);
 	if (extrem == 0)
 	{
@@ -116,19 +116,19 @@ void	push_b_sorted(t_stack *a, t_stack *b)
 			if (sens_rotation > 0)
 			{
 				ft_rb(b);
-				write(1, "rb\n", 3);
+				ft_putstr("rb\n");
 			}
 			else
 			{
 				ft_rrb(b);
-				write(1, "rrb\n", 4);
+				ft_putstr("rrb\n");
 			}
 		}
 	}
 	else
 		rotate_b_extrem(sens_rotation, b);
 	ft_pb(a, b);
-	write(1, "pb\n", 3);
+	ft_putstr("pb\n");
 }
 
 //find the elem with minimun rotation (orientation->previous)
@@ -209,7 +209,7 @@ void	push_a_sorted(t_stack *a, t_stack *b)
 	while (b->size > 0)
 	{
 		ft_pa(a, b);
-		write(1, "pa\n", 3);
+		ft_putstr("pa\n");
 	}
 	sens_rotation = find_closet(INT_MAX, a);
 	while (a->last->value < a->first->value)
@@ -217,12 +217,12 @@ void	push_a_sorted(t_stack *a, t_stack *b)
 		if (sens_rotation == 1)
 		{
 			ft_ra(a);
-			write(1, "ra\n", 3);
+			ft_putstr("ra\n");
 		}
 		else
 		{
 			ft_rra(a);
-			write(1, "rra\n", 4);
+			ft_putstr("rra\n");
 		}
 	}
 }
@@ -239,13 +239,13 @@ void	tri_version(t_stack *a, t_stack *b)
 			if (best_count_r > 0)
 			{
 				ft_ra(a);
-				write(1, "ra\n", 3);
+				ft_putstr("ra\n");
 				best_count_r --;
 			}
 			else
 			{
 				ft_rra(a);
-				write(1, "rra\n", 4);
+				ft_putstr("rra\n");
 				best_count_r++;
 			}
 		}

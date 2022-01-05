@@ -46,7 +46,6 @@ void	ft_pa(t_stack *a, t_stack *b)
 	{
 		value = remove_from_top(b);
 		add_to_top(a, value);
-		ft_putstr("pa\n");
 	}
 }
 
