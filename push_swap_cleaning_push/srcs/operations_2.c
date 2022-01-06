@@ -11,6 +11,7 @@ void	ft_rb(t_stack *b)
 		b->first = b->first->next;
 		b->last = tmp;
 	}
+	ft_putstr("rb\n");
 }
 
 //rr : ra and rb at the same time.
@@ -30,6 +31,7 @@ void	ft_rra(t_stack *a)
 		a->last = a->last->prev;
 		a->first = tmp;
 	}
+	ft_putstr("rra\n");
 }
 
 //rrb : reverse rotate b - shift down all elements of stack b by 1. The last element becomes the first one.
@@ -43,6 +45,7 @@ void	ft_rrb(t_stack *b)
 		b->last = b->last->prev;;
 		b->first = tmp;
 	}
+	ft_putstr("rrb\n");
 }
 
 //rrr : rra and rrb at the same time.

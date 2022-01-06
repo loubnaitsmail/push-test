@@ -103,17 +103,22 @@ int	main(int ac, char **av)
 	init_stack(&a, &b);
 	build_stack(&a, ac, av);
 
+	printf("start\n");
 	print_stacks(&a, &b);
+
 	if (a.size < 2)
-		return(0);
+		return (0);
 	else if (sorted(&a))
-		return(0);
-	else if (a.size < 4) 
+		return (0);
+	else if (a.size == 3) 
 		very_small_sort(&a);
-	else if (a.size < 6)
+	else if (a.size == 5)
 		small_sort(&a, &b);
 	else
 		tri_version(&a, &b);
+	
+	printf("finish\n");
 	print_stacks(&a, &b);
 	return(0);
+
 }

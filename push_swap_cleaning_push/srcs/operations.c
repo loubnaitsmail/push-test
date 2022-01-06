@@ -1,7 +1,5 @@
 #include "../includes/push_swap.h"
 
-extern int SCORE_FINAL;
-
 //sa : swap a - swap the first 2 elements at the top of stack a
 void	ft_sa(t_stack *a)
 {
@@ -14,6 +12,7 @@ void	ft_sa(t_stack *a)
 		tmp->next = a->first;
 		a->first = tmp;
 	}
+	ft_putstr("sa\n");
 }
 
 //sb : swap b - swap the first 2 elements at the top of stack b.
@@ -28,6 +27,7 @@ void	ft_sb(t_stack *b)
 		tmp->next = b->first;
 		b->first = tmp;
 	}
+	ft_putstr("sb\n");
 }
 
 //ss : sa and sb at the same time
@@ -47,6 +47,7 @@ void	ft_pa(t_stack *a, t_stack *b)
 		value = remove_from_top(b);
 		add_to_top(a, value);
 	}
+	ft_putstr("pa\n");
 }
 
 //pb : push b - take the first element at the top of a and put it at the top of b.
@@ -59,6 +60,7 @@ void	ft_pb(t_stack *a, t_stack *b)
 		value = remove_from_top(a);
 		add_to_top(b, value);
 	}
+	ft_putstr("pb\n");
 }
 
 //ra : rotate a - shift up all elements of stack a by 1. The first element becomes the last one.
@@ -72,4 +74,5 @@ void	ft_ra(t_stack *a)
 		a->first = a->first->next;
 		a->last = tmp;
 	}
+	ft_putstr("ra\n");
 }

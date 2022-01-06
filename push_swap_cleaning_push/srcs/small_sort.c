@@ -1,5 +1,60 @@
 #include "../includes/push_swap.h"
 
+void	add_s_to_top(t_stack *a, long val)
+{
+	t_elem	*new;
+
+	new = malloc(sizeof(t_elem));
+	if (!new)
+		ft_error();
+	new->value = val;
+	if (a->size > 0)
+	{
+		new->next = a->first;
+		new->prev = NULL;
+	}
+	else
+	{
+		new->next = new;
+		new->prev = new;
+		a->last = new;
+	}
+	a->first = new;
+	a->size += 1;
+}
+
+long	remove_s_from_top(t_stack *a)
+{
+	long val;
+	t_elem	*tmp;
+
+	tmp = a->first;
+	if (!tmp)
+		return (-1);
+	val = tmp->value;
+	if (tmp->next)
+		a->first = tmp->next;
+	else
+	{
+		a->first = NULL;
+		a->last = NULL;
+	}
+	free(tmp);
+	a->size--;
+	return	(val);
+}
+
+void		ft_pa_s(t_stack *a, t_stack *b)
+{
+	long value;
+	if (b->size > 0)
+	{
+		value = remove_s_from_top(b);
+		add_s_to_top(a, value);
+	}
+	ft_putstr("pa_s\n");
+}
+
 void		ft_ra_s(t_stack *a)
 {
 	t_elem	*tmp;
@@ -21,7 +76,7 @@ void		ft_ra_s(t_stack *a)
 		a->first->next = tmp;
 		a->first = head;
 	}
-	ft_putstr("ra\n");
+	ft_putstr("ra_s\n");
 }
 
 void		ft_rra_s(t_stack *a)
@@ -45,10 +100,10 @@ void		ft_rra_s(t_stack *a)
 		tmp->next = a->first;
 		a->first = tmp;
 	}
-	ft_putstr("rra\n");
+	ft_putstr("rra_s\n");
 }
 
-
+// tri une list de 3 
 void	very_small_sort(t_stack *a)
 {
 	int top;
@@ -62,94 +117,64 @@ void	very_small_sort(t_stack *a)
 	if (top > mid && mid < end && end > top)
 	{
 		ft_sa(a);
-		ft_putstr("sa\n");
 	}
 	else if  (top > mid && mid > end && end < top)
 	{
 		ft_sa(a);
-		ft_putstr("sa\n");
 		ft_rra_s(a);
 	}
 	else if  (top > mid && mid < end && end < top)
 	{
 		ft_ra(a);
-		ft_putstr("ra\n");
 	}
 	else if  (top < mid && mid > end && end > top)
 	{
 		ft_sa(a);
-		ft_putstr("sa\n");
 		ft_ra_s(a);
 	}
 	else if  (top < mid && mid > end && end < top)
 	{
 		ft_rra(a);
-		ft_putstr("rra\n");
 	}
 }
 
-
+//tri pas encore la liste de 5
 void small_sort(t_stack *a, t_stack *b)
 {
+	//Divise en 2
 	while (a->size > 3)
 	{
 		ft_pb(a, b);
-		ft_putstr("pb\n");
 	}
+	//sort list de 3
 	very_small_sort(a);
-	/*while (b->size > 0)
-	{
-		ft_pa(a, b);
-		ft_putstr("pa\n");
-	}
-	tri_version(a, b);*/
+	print_stacks(a, b);
 
+	//put b -> a sorted
 	while (b->size > 0)
 	{
 		printf("b->first %ld a->first %ld b->first %ld a->last %ld\n", b->first->value, a->first->value, b->first->value, a->last->value);
+
 		if (b->first->value < a->first->value)
 		{
-			printf("cas 1\n");
-			ft_pa(a, b);
-			ft_putstr("pa\n");
+			printf("\ncas 1\n");
+			ft_pa_s(a, b);
 			print_stacks(a, b);
 		}
-		else if (b->first->value > a->first->value && b->first->value > a->last->value)
+		else if ((b->first->value > a->first->value && b->first->value < a->last->value) 
+		|| (b->first->value > a->first->value && b->first->value > a->last->value))
 		{
-			printf("cas 2\n");
-			ft_pa(a, b);
-			ft_putstr("pa\n");
-			print_stacks(a, b);
+			printf("\ncas 3\n");
 			ft_ra(a);
-			ft_putstr("ra\n");
 			print_stacks(a, b);
 		}
-		else if (b->first->value > a->first->value && b->first->value < a->last->value)
-		{
-			printf("cas 3\n");
-			while (b->first->value > a->first->value && b->first->value < a->last->value)
-			{
-				printf("cas 3.1\n");
-				ft_rra(a);
-				ft_putstr("rra\n");
-				print_stacks(a, b);
-				a->first = a->first->next;
-			}
-			while (b->size > 1)
-			{
-				ft_pa(a, b);
-				//ici bordel de circulaire
-				ft_putstr("pa\n");
-				print_stacks(a, b);
-			}
-			
-			while (a->first->value > a->last->value)
-			{
-				printf("cas 3.2\n");
-				ft_ra(a);
-				ft_putstr("ra\n");
-				print_stacks(a, b);
-			}
-		}
+	}
+
+	//tri a
+	while (a->first->value > a->last->value)
+	{
+		printf("tri final\n");
+		ft_ra(a);
+		print_stacks(a, b);
 	}
 }
