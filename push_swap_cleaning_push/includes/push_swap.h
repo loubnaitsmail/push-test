@@ -30,6 +30,7 @@ void	ft_rb(t_stack *b);
 void	ft_rrb(t_stack *b);
 void	ft_rra(t_stack *a);
 
+void	print_reverse_stack(t_stack *a);
 void	print_stack(t_stack *a);
 void	print_stacks(t_stack *a, t_stack *b);
 long	remove_from_top(t_stack *a);

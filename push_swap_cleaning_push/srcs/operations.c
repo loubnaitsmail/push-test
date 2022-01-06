@@ -1,31 +1,67 @@
 #include "../includes/push_swap.h"
 
+/*
+		old_first->next = new_first->next;
+		tmp->next->prev = a->first;
+		tmp->next = a->first;
+		
+		a->first = tmp;
+		a->first->prev = a->last;
+		a->first->next->prev = a->first;
+		a->first->next->next->prev = a->first->next;
+*/
 //sa : swap a - swap the first 2 elements at the top of stack a
 void	ft_sa(t_stack *a)
 {
-	t_elem	*tmp;
+	t_elem	*new_first;
+	t_elem	*old_first;
+	t_elem	*third_elem; // can be the first if size == 2
+	t_elem	*last_elem; // can be the first if size == 2
 
 	if (a->size > 1)
 	{
-		tmp = a->first->next;
-		a->first->next = a->first->next->next;
-		tmp->next = a->first;
-		a->first = tmp;
+		old_first = a->first;
+		new_first = a->first->next;
+		third_elem = a->first->next->next;
+		last_elem = a->last;
+
+		new_first->next = old_first;
+		old_first->prev = new_first;
+		old_first->next = third_elem;
+		third_elem->prev = old_first;
+		last_elem->next = new_first;
+		new_first->prev = last_elem;
+		a->first = new_first;
+		if (a->size == 2)
+			a->last = old_first;
 	}
 	ft_putstr("sa\n");
 }
 
 //sb : swap b - swap the first 2 elements at the top of stack b.
-void	ft_sb(t_stack *b)
+void	ft_sb(t_stack *a)
 {
-	t_elem	*tmp;
+	t_elem	*new_first;
+	t_elem	*old_first;
+	t_elem	*third_elem; // can be the first if size == 2
+	t_elem	*last_elem; // can be the first if size == 2
 
-	if (b->size > 1)
+	if (a->size > 1)
 	{
-		tmp = b->first->next;
-		b->first->next = b->first->next->next;
-		tmp->next = b->first;
-		b->first = tmp;
+		old_first = a->first;
+		new_first = a->first->next;
+		third_elem = a->first->next->next;
+		last_elem = a->last;
+
+		new_first->next = old_first;
+		old_first->prev = new_first;
+		old_first->next = third_elem;
+		third_elem->prev = old_first;
+		last_elem->next = new_first;
+		new_first->prev = last_elem;
+		a->first = new_first;
+		if (a->size == 2)
+			a->last = old_first;
 	}
 	ft_putstr("sb\n");
 }

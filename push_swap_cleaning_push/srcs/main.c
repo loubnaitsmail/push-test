@@ -1,5 +1,27 @@
 #include "../includes/push_swap.h"
 
+
+
+void	print_reverse_stack(t_stack *a)
+{
+	t_elem	*actuel;
+	int size;
+
+	size = 0;
+	actuel = a->last;
+	printf("<< ");
+	while (size < a->size)
+	{
+		printf("%2ld ", actuel->value);
+		actuel = actuel->prev;
+		size ++;
+	}
+	printf(" >>\n");
+}
+
+
+
+
 void	print_stack(t_stack *a)
 {
 	t_elem	*actuel;
@@ -103,8 +125,8 @@ int	main(int ac, char **av)
 	init_stack(&a, &b);
 	build_stack(&a, ac, av);
 
-	printf("start\n");
-	print_stacks(&a, &b);
+	//printf("start\n");
+	//print_stacks(&a, &b);
 
 	if (a.size < 2)
 		return (0);
@@ -117,8 +139,8 @@ int	main(int ac, char **av)
 	else
 		tri_version(&a, &b);
 	
-	printf("finish\n");
-	print_stacks(&a, &b);
+	//printf("finish\n");
+	//print_stacks(&a, &b);
 	return(0);
 
 }

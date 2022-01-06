@@ -115,27 +115,21 @@ void	very_small_sort(t_stack *a)
 	end = a->last->value;
 
 	if (top > mid && mid < end && end > top)
-	{
 		ft_sa(a);
-	}
 	else if  (top > mid && mid > end && end < top)
 	{
 		ft_sa(a);
-		ft_rra_s(a);
+		ft_rra(a);
 	}
 	else if  (top > mid && mid < end && end < top)
-	{
 		ft_ra(a);
-	}
 	else if  (top < mid && mid > end && end > top)
 	{
 		ft_sa(a);
-		ft_ra_s(a);
+		ft_ra(a);
 	}
 	else if  (top < mid && mid > end && end < top)
-	{
 		ft_rra(a);
-	}
 }
 
 //tri pas encore la liste de 5
@@ -143,38 +137,11 @@ void small_sort(t_stack *a, t_stack *b)
 {
 	//Divise en 2
 	while (a->size > 3)
-	{
 		ft_pb(a, b);
-	}
 	//sort list de 3
 	very_small_sort(a);
-	print_stacks(a, b);
-
+	//print_stacks(a, b);
 	//put b -> a sorted
 	while (b->size > 0)
-	{
-		printf("b->first %ld a->first %ld b->first %ld a->last %ld\n", b->first->value, a->first->value, b->first->value, a->last->value);
-
-		if (b->first->value < a->first->value)
-		{
-			printf("\ncas 1\n");
-			ft_pa_s(a, b);
-			print_stacks(a, b);
-		}
-		else if ((b->first->value > a->first->value && b->first->value < a->last->value) 
-		|| (b->first->value > a->first->value && b->first->value > a->last->value))
-		{
-			printf("\ncas 3\n");
-			ft_ra(a);
-			print_stacks(a, b);
-		}
-	}
-
-	//tri a
-	while (a->first->value > a->last->value)
-	{
-		printf("tri final\n");
-		ft_ra(a);
-		print_stacks(a, b);
-	}
+		push_a_sorted(a, b);
 }

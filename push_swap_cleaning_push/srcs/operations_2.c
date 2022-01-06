@@ -24,6 +24,7 @@ void	ft_rr(t_stack *a, t_stack *b)
 //rra : reverse rotate a - shift down all elements of stack a by 1. The last element becomes the first one.
 void	ft_rra(t_stack *a)
 {
+
 	t_elem	*tmp;
 	if (a->first && a->first->next)
 	{
